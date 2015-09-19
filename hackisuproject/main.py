@@ -37,7 +37,6 @@ jinja_environment = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-
 def get_city_list():
     city_list = []
     f = open(os.path.join(os.path.dirname(__file__), 'csv/cities.csv'))
@@ -47,38 +46,28 @@ def get_city_list():
     city_list = set(city_list)
     return city_list
 
-def parse_dict(query):
+def get_weather_info(query):
     base_url = 'http://api.openweathermap.org/data/2.5/weather?&'
     api_key_url = '&units=imperial&APPID=341e54aef9ae5224b6094459078293b8'
-    data_source = urlfetch.fetch(base_url + query + api_key_url)
-    json_content = data_source.content
-    parsed_dictionary = json.loads(json_content)
+    weather_data_source = urlfetch.fetch(base_url + query + api_key_url)
+    weather_json_content = weather_data_source.content
+    parsed_weather_dictionary = json.loads(weather_json_content)
+    return parsed_weather_dictionary
 
-    return parsed_dictionary
-
-def get_city_info(parsed_dictionary):
+def get_city_info(parsed_weather_dictionary):
     ## WEATHER ##
-    # base_url = 'http://api.openweathermap.org/data/2.5/weather?&'
-    # api_key_url = '&units=imperial&APPID=341e54aef9ae5224b6094459078293b8'
-    # weather_data_source = urlfetch.fetch(base_url + query + api_key_url)
-    # weather_json_content = weather_data_source.content
-    # parsed_weather_dictionary = json.loads(weather_json_content)
+    city_name = parsed_weather_dictionary['name']
+    country = parsed_weather_dictionary['sys']['country']
+    weather_description = parsed_weather_dictionary['weather'][0]['description']
+    temperature = parsed_weather_dictionary['main']['temp']
+    min_temp = parsed_weather_dictionary['main']['temp_min']
+    max_temp = parsed_weather_dictionary['main']['temp_max']
+    humidity = parsed_weather_dictionary['main']['humidity']
+    wind_speed = parsed_weather_dictionary['wind']['speed']
 
-    city_name = parsed_dictionary['name']
-    country = parsed_dictionary['sys']['country']
-
-
-    temperature = parsed_dictionary['main']['temp']
-    min_temp = parsed_dictionary['main']['temp_min']
-    max_temp = parsed_dictionary['main']['temp_max']
-
-
-    icon_url = 'http://openweathermap.org/img/w/%s.png' % weather_icon
 
     search_term = urllib.quote_plus(city_name)
     search_term = search_term.replace('%20', '+')
-    search_term = search_term.replace(' ', '+')
-
 
 
     # NEARBY RESTAURANTS AND BUSINESSES ##
@@ -90,7 +79,6 @@ def get_city_info(parsed_dictionary):
     if len(parsed_yelp_list) != 0:
         for i in range(len(parsed_yelp_list)):
             business['name'] = urllib.unquote(parsed_yelp_list[i]['id']).replace('-', ' ').title()
-            logging.info(urllib.unquote(parsed_yelp_list[i]['id']))
             business['rating'] = parsed_yelp_list[i]['rating']
             business['url'] = parsed_yelp_list[i]['url']
             address = ', '.join(parsed_yelp_list[i]['location']['display_address'])
@@ -104,12 +92,17 @@ def get_city_info(parsed_dictionary):
     template_vars = {
         'city_name': city_name,
         'country': country,
+        'description': weather_description,
         'temperature': int(temperature),
+        'min_temp': int(min_temp),
+        'max_temp': int(max_temp),
+        'humidity': humidity,
+        'wind_speed': wind_speed,
         'has_yelp': has_yelp,
-        'business_list': business_list}
+        'business_list': business_list
+        }
 
     return template_vars
-
 
 class Place(ndb.Model):
     category = ndb.StringProperty(required = True)
@@ -125,18 +118,13 @@ class MainHandler(webapp2.RequestHandler):
 
 class ResultsHandler(webapp2.RequestHandler):
     def get(self):
+        ## DISPLAYS CITY INFORMATION ##
+        query = 'q=' + self.request.get('search')
+        query = query.replace(' ', '+')
 
-        if self.request.get('search-type') == 'zip':
-            query = 'zip=' + self.request.get('search')
-        elif self.request.get('search-type') == 'latlon':
-            query = 'lat=%s&lon=%s' % (self.request.get('lat'), self.request.get('lon'))
-        else:
-            query = 'q=' + self.request.get('search')
-            query = query.replace(' ', '+')
-
-        parsed_dictionary = get_city_info(query)
-        if 'name' in parsed_dictionary:
-            template_vars = get_city_info(parsed_dictionary)
+        parsed_weather_dictionary = get_weather_info(query)
+        if 'name' in parsed_weather_dictionary:
+            template_vars = get_city_info(parsed_weather_dictionary)
             template = jinja_environment.get_template('templates/results.html')
             self.response.write(template.render(template_vars))
         else:
