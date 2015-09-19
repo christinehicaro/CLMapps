@@ -13,20 +13,17 @@
 
   <body>
   <h1>{{city_name}}, {{country}}</h1>
-  <div id="yellow" class="tile">
-      <div id="icon"><img src={{icon_url}}></div>
+  <div>
       <p>Description: {{description}}</p>
-      <p>Temperature: {{temperature}}&#8457;</p>
-      <p>High: {{max_temp}}&#8457;</p>
-      <p>Low: {{min_temp}}&#8457;</p>
+      <p>Temperature: {{temperature}};</p>
+      <p>High: {{max_temp}}</p>
+      <p>Low: {{min_temp}</p>
       <p>Humidity: {{humidity}}%</p>
       <p>Wind Speed: {{wind_speed}}mph</p>
       <br/>
-    </div>
+  </div>
 
-
-    <!-- Second row, first tile -->
-    <div id="red" class="tile">
+    <div>
       <h1>Businesses</h1>
       <div class="content">
         {% if has_yelp %}
