@@ -19,11 +19,9 @@ import webapp2
 import jinja2
 import os
 from google.appengine.ext import ndb
-
 from google.appengine.api import urlfetch
 import logging
 import json
-
 from operator import eq
 from collections import OrderedDict
 
@@ -31,11 +29,35 @@ from collections import OrderedDict
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
+class Place(ndb.Model):
+    category = ndb.StringProperty(required = True)
+    name = ndb.StringProperty(required = True)
+    location = ndb.StringProperty(required = True)
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/index.html')
         self.response.write(template.render())
 
+class ResultsHandler(webapp2.RequestHandler):
+    def get(self):
+        # template_names = {}
+        # template_categories = {}
+        # template_locaitons = {}
+        # user_search = self.request.get('search')
+        # template = jinja_environment.get_template('templates/search.html')
+        # term = {'term' : user_search}
+        # search_term = urllib.urlencode(term)
+        # base_url = 'http://api.yelp.com/v2/search?term='
+        # search_url = base_url + search_term
+        # url_content = urlfetch.fetch(search_url).content
+        # parsed_url_dictionary = json.loads(url_content)
+        # template = jinja_environment.get_template('templates/results.html')
+        # self.response.write(template.render())
+        template = jinja_environment.get_template('templates/result.html')
+        self.response.write(template.render())
+
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/results', ResultsHandler)
 ], debug=True)
