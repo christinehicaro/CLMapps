@@ -21,6 +21,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 import logging
 import json
+import urllib
 from operator import eq
 from collections import OrderedDict
 
@@ -40,43 +41,35 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/index.html')
         self.response.write(template.render())
 
-
-    def post(self):
-        template = jinja_environment.get_template('templates/index.html')
-        example_source = urlfetch('http://api.yelp.com/v2/search?term=food&location=San+Francisco')
-        logging.info(example_source)
-        search_url = ('http://api.yelp.com/v2/search?term=' + '&location=San+Francisco')
-
-        search_term = self.request.get("search")
-        search_term = search_term.replace(" ", "+")
-
-
-        query_url = search_url % search_term
-        url_fetch_response = urlfetch.fetch(query_url)
-
-        json_content = url_fetch_response.content
-        parsed_giphy_dictionary = json.loads(json_content)
-
-        self.response.write(template.render())
-
+#consumer key = xcBFVugoUDNSh-YdI69i7A
 
 class ResultsHandler(webapp2.RequestHandler):
-    def get(self):
+    def post(self):
+        result_template = jinja_environment.get_template('templates/results.html')
+        # template = jinja_environment.get_template('templates/results.html')
+        # example_source = urlfetch('http://api.yelp.com/v2/search?term=food&location=San+Francisco')
+        # logging.info(example_source)
+        # base_url_category = ('http://api.yelp.com/v2/search?term=')
+
         # template_names = {}
         # template_categories = {}
-        # template_locaitons = {}
-        # user_search = self.request.get('search')
-        # template = jinja_environment.get_template('templates/search.html')
-        # term = {'term' : user_search}
-        # search_term = urllib.urlencode(term)
-        # base_url = 'http://api.yelp.com/v2/search?term='
-        # search_url = base_url + search_term
+        # template_locations = {}
+        # search_results = []
+        user_search = self.request.get('search')
+        # user_term.replace(" ", "+")
+        term = {'term' : user_search}
+        user_term = urllib.urlencode(term)
+        base_url = 'http://api.yelp.com/v2/search?term='
+        search_url = base_url + user_term
+        url_content = urlfetch.fetch(search_url).content
+        parsed_url_dictionary = json.loads(url_content)
+        yelp_url = parsed_url_dictionary
+        template_vars = {"yelp1": yelp_url}
         # url_content = urlfetch.fetch(search_url).content
         # parsed_url_dictionary = json.loads(url_content)
         # template = jinja_environment.get_template('templates/results.html')
         # self.response.write(template.render())
-        template = jinja_environment.get_template('templates/result.html')
-        self.response.write(template.render())
+        self.response.write(result_template.render(template_vars))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),

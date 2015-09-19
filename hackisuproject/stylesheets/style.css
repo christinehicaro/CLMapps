@@ -8,9 +8,5 @@ h1{color:red;}
             margin-left: auto ;
             margin-right: auto ;
           }
-/*form {
-    display: inline-block;
-    text-align: center;
-    }*/
-.col-lg-6{display: inline-block;
-          text-align: center;}
+/*.col-lg-6{display: inline-block;
+          text-align: center;}*/
