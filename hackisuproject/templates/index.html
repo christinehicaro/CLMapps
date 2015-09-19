@@ -15,7 +15,7 @@
 
     <h1> CLMapps </h1>
 
-    <form method="get" action="/results">
+    <!-- <form method="get" action="/results">
     <div id="searchBar">
       <div id="select-bg">
       </div>
@@ -26,7 +26,36 @@
       <input type="submit" class="button" value="Find"/>
     </div>
 
-  </form>
+  </form> -->
+
+    <div class="jumbotron">
+      <div id = "jtcontent">
+        <center><h1>Business Finder</h1></center>
+        <center><p>
+          Find businesses any time, any where!
+        </p></center>
+        <br>
+        <div id = "searchcontent">
+          <form action = "/results" method = "get">
+              <div class="col-lg-6">
+                <div class="input-group">
+                  <center><input type="text" class="form-control" name = "search" placeholder="Enter a location (i.e. Chicago, New York, Singapore)" style = "width:350px"></center>
+                  <br>
+                  <br>
+                  <center><button type="submit">Go!</button></center>
+                  <br>
+                  <br>
+                  <p><a id = "randombutton" class="btn btn-primary btn-lg" href="/random" role="button">Give me a random location</a></p>
+
+                </div><!-- /input-group -->
+              </div><!-- /.col-lg-6 -->
+          </div><!-- /.row -->
+            <br>
+            <br>
+          </form>
+        </div>
+      </div>
+
 
 
   </body>
