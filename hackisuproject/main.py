@@ -25,9 +25,11 @@ import json
 from operator import eq
 from collections import OrderedDict
 
-
 jinja_environment = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
+
 
 class Place(ndb.Model):
     category = ndb.StringProperty(required = True)
@@ -37,7 +39,30 @@ class Place(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/index.html')
-        self.response.write(template.render())
+        self.response.write(template.render({
+            'search': search,
+            'search1': search1
+        }))
+
+
+    def post(self):
+
+
+
+        search_term = self.request.get("search")
+        search_term = search_term.replace(" ", "+")
+
+
+        search_term1 = self.request.get("search")
+        search_term1 = search_term.replace(" ", "+")
+
+        data_source = urlfetch('http://api.yelp.com/v2/search?term=food&location=San+Francisco')
+        data_source = urlfetch('http://api.yelp.com/v2/search?term=
+                                                search_term
+                                                "&location'=San+Francisco
+                                                )
+
+
 
 class ResultsHandler(webapp2.RequestHandler):
     def get(self):
