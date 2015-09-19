@@ -13,34 +13,20 @@
 
   <body>
 
-    <div class="jumbotron">
-      <div id = "jtcontent">
-        <h1>CLMapps</h1>
-        <p>
-          Find a business near you!
-        </p>
-        <p><a class="btn btn-primary btn-lg" href="popularplaces" role="button">See some popular places</a></p>
+    <h1> CLMapps </h1>
+
+    <form method="get" action="/results">
+    <div id="searchBar">
+      <div id="select-bg">
       </div>
-      <br>
-      <div id = "searchcontent"><form action = "/results" method = "post">
-        <div class="col-lg-6">
-          <div class="input-group">
-            <input type="text" class="form-control" name = "typesearch" placeholder="Search for a type of business (i.e. restaurant)" style = "width:450px">
-            <br>
-            <br>
-            <input type="text" class="form-control" name = "locationsearch" placeholder="Search a location (i.e. Ames)" style = "width:450px">
-            <br>
-            <br>
-            <center><button class="btn btn-default" type="submit">Go!</button></center>
-
-          </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-        </div><!-- /.row -->
-      </form></div>
-
+        <select name="search-type">
+          <option value="city">City</option>
+        </select>
+      <input type="text" class="search" name="search" size=40px/>
+      <input type="submit" class="button" value="Find"/>
     </div>
 
-
+  </form>
 
 
   </body>
