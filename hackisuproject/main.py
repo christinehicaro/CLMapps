@@ -13,12 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-<<<<<<< HEAD
-#
-# Useless comment
-=======
-import oauth2
->>>>>>> 9f9fbec1697efaa4a15ab381288dae14f0c4fea1
+
 import webapp2
 import json
 import random
