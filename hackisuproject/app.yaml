@@ -10,14 +10,17 @@ handlers:
   upload: favicon\.ico
 - url: /stylesheets
   static_dir: stylesheets
-- url: /scripts
-  static_dir: scripts
-
+- url: /js
+  static_dir: js
+- url: /img
+  static_dir: img
+- url: /csv
+  static_dir: csv
+  application_readable: true
 - url: .*
   script: main.app
-
 libraries:
-- name: webapp2
-  version: "2.5.2"
 - name: jinja2
   version: latest
+- name: webapp2
+  version: "2.5.2"

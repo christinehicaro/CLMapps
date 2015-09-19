@@ -13,34 +13,16 @@
 
   <body>
 
-    <div class="jumbotron">
-      <div id = "jtcontent">
-        <h1>CLMapps</h1>
-        <p>
-          Find a business near you!
-        </p>
-        <p><a class="btn btn-primary btn-lg" href="popularplaces" role="button">See some popular places</a></p>
-      </div>
-      <br>
-      <div id = "searchcontent"><form action = "/results" method = "post">
-        <div class="col-lg-6">
-          <div class="input-group">
-            <input type="text" class="form-control" name = "typesearch" placeholder="Search for a type of business (i.e. restaurant)" style = "width:450px">
-            <br>
-            <br>
-            <input type="text" class="form-control" name = "locationsearch" placeholder="Search a location (i.e. Ames)" style = "width:450px">
-            <br>
-            <br>
-            <center><button class="btn btn-default" type="submit">Go!</button></center>
+    <h1> CLMapps </h1>
 
-          </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-        </div><!-- /.row -->
-      </form></div>
-
+    <form action = "/results" method = "get">
+    <div id = "searching">
+    <!-- <center><input type = "text" id = "searchbarlocation" name = "locationsearch" style = "width: 300px; height: 30px" placeholder = "City, State"/> -->
+  <!-- <input type="submit" value="search"></center> -->
+      <center><input type = "text" id = "searchbartype" name = "typesearch" style = "width: 300px; height: 30px" placeholder = "business type"/>
+      <input type="image" src="http://www.clker.com/cliparts/Y/x/X/j/U/f/search-button-without-text-md.png" height = "30" width = "30" name="searchbutton" id = "search"></center>
     </div>
-
-
+  </form>
 
 
   </body>
