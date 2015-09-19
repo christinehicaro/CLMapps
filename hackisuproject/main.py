@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# Useless comment
 import webapp2
 import jinja2
 import os
