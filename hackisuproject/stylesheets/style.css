@@ -2,7 +2,7 @@ h1{color:red;}
 .jumbotron{
             background-image: url('http://img00.deviantart.net/f4b6/i/2013/171/0/f/city_collage_wallpaper_by_byzeka-d69xa2j.jpg');
             height: 400px;
-        s
+
           }
 #jtcontent{
             width: 600px ;
@@ -23,5 +23,5 @@ h1{color:red;}
                 left: 30px;
               }
 #title{color:white;}
-#subtitle{color:white;}
+#subtitle{color:white}
 }
