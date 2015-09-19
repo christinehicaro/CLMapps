@@ -24,23 +24,6 @@
       <br/>
     </div>
 
-    <!-- First row, second tile -->
-    <div id="blue" class="tile">
-      <h1>News</h1>
-      <div class="content">
-        {% if has_news %}
-          {% for article in news_articles %}
-            <h2><a href="{{article['web_url']}}">{{article['headline']}}</a></h2>
-            <em>{{article['pub_date']}}</em>
-            <p>{{article['snippet']}}</p>
-          {% endfor %}
-        {% else %}
-          <h2 id="oops">There are no articles for this location.</h2>
-          <img src="../img/cat1.gif" class="cat">
-        {% endif %}
-      </div>
-    </div>
-
 
     <!-- Second row, first tile -->
     <div id="red" class="tile">
@@ -58,23 +41,6 @@
       {% endif %}
       </div>
     </div>
-
-    <!-- Second row, second tile -->
-    <div id="green" class="tile">
-        <h1>Pictures</h1>
-        <br><br><br>
-        <div class="content"
-          {% if has_img %}
-            <img src="{{img_url}}" id= "pic">
-          {% else %}
-
-          <h2 id="oops">There are no pictures for this location.</h2>
-          <img src="../img/cat1.gif" class="cat">
-
-        {% endif %}
-      </div>
-    </div>
-  </div>
 
   </body>
 
