@@ -104,10 +104,10 @@ def get_city_info(parsed_weather_dictionary):
 
     return template_vars
 
-class Place(ndb.Model):
-    category = ndb.StringProperty(required = True)
-    name = ndb.StringProperty(required = True)
-    location = ndb.StringProperty(required = True)
+# class Place(ndb.Model):
+#     category = ndb.StringProperty(required = True)
+#     name = ndb.StringProperty(required = True)
+#     location = ndb.StringProperty(required = True)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -136,9 +136,26 @@ class ErrorHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/error.html')
         self.response.write(template.render())
 
+class RandomHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('templates/random.html')
+        places_list = ['springfield', 'dallas', 'chicago', 'orlando', 'lincoln', 'iowa city', 'ames', 'seattle']
+        randNum = random.randint(0,7)
+        query = 'q=' + places_list[randNum]
+        query = query.replace(' ', '+')
+        parsed_weather_dictionary = get_weather_info(query)
+        if 'name' in parsed_weather_dictionary:
+            template_vars = get_city_info(parsed_weather_dictionary)
+            self.response.write(template.render(template_vars))
+        else:
+            template = jinja_environment.get_template('templates/error.html')
+            self.response.write(template.render({'error_description': 'Invalid search. Please try again!'}))
+
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/results', ResultsHandler),
-    ('/error', ErrorHandler)
+    ('/error', ErrorHandler),
+    ('/random', RandomHandler)
 ], debug=True)
