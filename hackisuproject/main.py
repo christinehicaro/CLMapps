@@ -46,22 +46,31 @@ class MainHandler(webapp2.RequestHandler):
 
 
     def post(self):
-
-
+        template = jinja_environment.get_template('index.html')
+        example_source = urlfetch('http://api.yelp.com/v2/search?term=food&location=San+Francisco')
+        search_url = ('http://api.yelp.com/v2/search?term='    +
+                                    '&location=San+Francisco')
 
         search_term = self.request.get("search")
         search_term = search_term.replace(" ", "+")
 
 
-        search_term1 = self.request.get("search")
-        search_term1 = search_term.replace(" ", "+")
+        query_url = search_url % search_term
+        url_fetch_response = urlfetch.fetch(query_url)
 
-        data_source = urlfetch('http://api.yelp.com/v2/search?term=food&location=San+Francisco')
-        data_source = urlfetch('http://api.yelp.com/v2/search?term=
+        json_content = url_fetch_response.content
+        parsed_giphy_dictionary = json.loads(json_content)
+
+
+        data_source = urlfetch('http://api.yelp.com/v2/search?term=' +
                                                 search_term
                                                 "&location'=San+Francisco
                                                 )
 
+        self.response.write(template.render({
+            'search': search_term,
+            'url': gif_url
+            }))
 
 
 class ResultsHandler(webapp2.RequestHandler):
