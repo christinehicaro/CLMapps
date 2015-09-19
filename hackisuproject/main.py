@@ -39,10 +39,7 @@ class Place(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/index.html')
-        self.response.write(template.render({
-            'search': search,
-            'search1': search1
-        }))
+        self.response.write(template.render())
 
 
     def post(self):
@@ -64,7 +61,7 @@ class MainHandler(webapp2.RequestHandler):
 
         data_source = urlfetch('http://api.yelp.com/v2/search?term=' +
                                                 search_term
-                                                "&location'=San+Francisco
+                                                '&location=San+Francisco'
                                                 )
 
         self.response.write(template.render({
