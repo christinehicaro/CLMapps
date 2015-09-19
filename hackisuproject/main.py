@@ -30,6 +30,11 @@ jinja_environment = jinja2.Environment(
     autoescape=True)
 
 
+class Place(ndb.Model):
+    category = ndb.StringProperty(required = True)
+    name = ndb.StringProperty(required = True)
+    location = ndb.StringProperty(required = True)
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/index.html')
@@ -41,7 +46,7 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
 
-        data_source = urlfetch('http://api.yelp.com/v2/search?term=food&location=San+Francisco')
+
 
         search_term = self.request.get("search")
         search_term = search_term.replace(" ", "+")
@@ -50,13 +55,33 @@ class MainHandler(webapp2.RequestHandler):
         search_term1 = self.request.get("search")
         search_term1 = search_term.replace(" ", "+")
 
-        user_input = urlfetch('http://api.yelp.com/v2/search?term=
+        data_source = urlfetch('http://api.yelp.com/v2/search?term=food&location=San+Francisco')
+        data_source = urlfetch('http://api.yelp.com/v2/search?term=
                                                 search_term
-                                                &location
+                                                "&location'=San+Francisco
                                                 )
 
 
 
+class ResultsHandler(webapp2.RequestHandler):
+    def get(self):
+        # template_names = {}
+        # template_categories = {}
+        # template_locaitons = {}
+        # user_search = self.request.get('search')
+        # template = jinja_environment.get_template('templates/search.html')
+        # term = {'term' : user_search}
+        # search_term = urllib.urlencode(term)
+        # base_url = 'http://api.yelp.com/v2/search?term='
+        # search_url = base_url + search_term
+        # url_content = urlfetch.fetch(search_url).content
+        # parsed_url_dictionary = json.loads(url_content)
+        # template = jinja_environment.get_template('templates/results.html')
+        # self.response.write(template.render())
+        template = jinja_environment.get_template('templates/result.html')
+        self.response.write(template.render())
+
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/results', ResultsHandler)
 ], debug=True)
