@@ -24,9 +24,11 @@ import json
 from operator import eq
 from collections import OrderedDict
 
-
 jinja_environment = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
+
 
 class Place(ndb.Model):
     category = ndb.StringProperty(required = True)
@@ -36,7 +38,39 @@ class Place(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/index.html')
-        self.response.write(template.render())
+        self.response.write(template.render({
+            'search': search,
+            'search1': search1
+        }))
+
+
+    def post(self):
+        template = jinja_environment.get_template('index.html')
+        example_source = urlfetch('http://api.yelp.com/v2/search?term=food&location=San+Francisco')
+        search_url = ('http://api.yelp.com/v2/search?term='    +
+                                    '&location=San+Francisco')
+
+        search_term = self.request.get("search")
+        search_term = search_term.replace(" ", "+")
+
+
+        query_url = search_url % search_term
+        url_fetch_response = urlfetch.fetch(query_url)
+
+        json_content = url_fetch_response.content
+        parsed_giphy_dictionary = json.loads(json_content)
+
+
+        data_source = urlfetch('http://api.yelp.com/v2/search?term=' +
+                                                search_term
+                                                "&location'=San+Francisco
+                                                )
+
+        self.response.write(template.render({
+            'search': search_term,
+            'url': gif_url
+            }))
+
 
 class ResultsHandler(webapp2.RequestHandler):
     def get(self):
