@@ -1,1 +1,16 @@
 h1{color:red;}
+.jumbotron{
+            background-image: url('http://finkegardens.com/wp-content/uploads/2013/01/SubtleGrungeBackground.jpg');
+            height: 400px;
+          }
+#jtcontent{
+            width: 275px ;
+            margin-left: auto ;
+            margin-right: auto ;
+          }
+/*form {
+    display: inline-block;
+    text-align: center;
+    }*/
+.col-lg-6{display: inline-block;
+          text-align: center;}

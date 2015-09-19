@@ -81,6 +81,8 @@ class ResultsHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/result.html')
         self.response.write(template.render())
 
+    def post(self):
+        self.response.write(template.render())
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/results', ResultsHandler)
