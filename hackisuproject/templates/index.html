@@ -20,20 +20,24 @@
           Find a business near you!
         </p>
         <p><a class="btn btn-primary btn-lg" href="popularplaces" role="button">See some popular places</a></p>
-
-        <br>
-        <center><form action = "/results" method = "post">
-          <div class="col-lg-6">
-            <div class="input-group">
-              <input type="text" class="form-control" name = "search" placeholder="Search for a type of business and a location (i.e. restaurant Ames)">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">Go!</button>
-              </span>
-            </div><!-- /input-group -->
-          </div><!-- /.col-lg-6 -->
-          </div><!-- /.row -->
-        </form></center>
       </div>
+      <br>
+      <div id = "searchcontent"><form action = "/results" method = "post">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <input type="text" class="form-control" name = "typesearch" placeholder="Search for a type of business (i.e. restaurant)" style = "width:450px">
+            <br>
+            <br>
+            <input type="text" class="form-control" name = "locationsearch" placeholder="Search a location (i.e. Ames)" style = "width:450px">
+            <br>
+            <br>
+            <center><button class="btn btn-default" type="submit">Go!</button></center>
+
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+      </form></div>
+
     </div>
 
 
