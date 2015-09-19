@@ -45,11 +45,34 @@ class MainHandler(webapp2.RequestHandler):
 
 class ResultsHandler(webapp2.RequestHandler):
     def post(self):
+<<<<<<< HEAD
+        template = jinja_environment.get_template('templates/index.html')
+        example_source = urlfetch('http://api.yelp.com/v2/search?term=food&location=San+Francisco')
+        logging.info(example_source)
+        search_url = ('http://api.yelp.com/v2/search?term=' + '&location=San+Francisco')
+
+        search_term = self.request.get("search")
+        search_term = search_term.replace(" ", "+")
+
+
+        query_url = search_url % search_term
+        url_fetch_response = urlfetch.fetch(query_url)
+
+        json_content = url_fetch_response.content
+        parsed_giphy_dictionary = json.loads(json_content)
+
+
+
+
+        self.response.write(template.render())
+
+=======
         result_template = jinja_environment.get_template('templates/results.html')
         # template = jinja_environment.get_template('templates/results.html')
         # example_source = urlfetch('http://api.yelp.com/v2/search?term=food&location=San+Francisco')
         # logging.info(example_source)
         # base_url_category = ('http://api.yelp.com/v2/search?term=')
+>>>>>>> 374dcdf0fe8ed599c728238c4f44a4a2e780d018
 
         # template_names = {}
         # template_categories = {}
@@ -71,6 +94,8 @@ class ResultsHandler(webapp2.RequestHandler):
         # self.response.write(template.render())
         self.response.write(result_template.render(template_vars))
 
+    def post(self):
+        self.response.write(template.render())
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/results', ResultsHandler)
