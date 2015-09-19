@@ -6,7 +6,7 @@
       CLMapps-{{city_name}}
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/results.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="my_script.js"></script>
   </header>
@@ -27,11 +27,11 @@
 
     <!-- Second row, first tile -->
     <div id="red" class="tile">
-      <h1>Businesses</h1>
+      <h2>Businesses (Click on name to see more info)</h2>
       <div class="content">
         {% if has_yelp %}
           {% for business in business_list %}
-            <h2><a href="{{business['url']}}">{{business['name']}}</a></h2>
+            <h3><a href="{{business['url']}}">{{business['name']}}</a></h3>
             <em>Rating: {{business['rating']}}</em>
             <p>{{business['address']}}</p>
           {% endfor %}
