@@ -27,8 +27,8 @@
 
     <!-- Second row, first tile -->
     <div id="red" class="tile">
-      <h2>Businesses (Click on name to see more info)</h2>
-      <div class="content">
+      <center><h2>Businesses (Click on name to see more info)</h2></center>
+      <center><div class="content">
         {% if has_yelp %}
           {% for business in business_list %}
             <h3><a href="{{business['url']}}">{{business['name']}}</a></h3>
@@ -39,13 +39,13 @@
           <h2 id="oops">There are no businesses for this location.</h2>
           <img src="../img/cat1.gif" class="cat">
       {% endif %}
-      </div>
+      </div></center>
     </div>
     <div id = "wrapper">
       <form action = "/" method = "get">
-        <button>Home</form>
-      </form>
+        <button id = "button1">Take me bake home</button>
 
+      </form>
     </div>
 
   </body>

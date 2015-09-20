@@ -12,8 +12,8 @@ handlers:
   static_dir: stylesheets
 - url: /js
   static_dir: js
-- url: /img
-  static_dir: img
+- url: /images
+  static_dir: images
 - url: /csv
   static_dir: csv
   application_readable: true
