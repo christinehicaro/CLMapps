@@ -1,4 +1,14 @@
-body{background-image: url('http://glossi-media-us-west.s3-us-west-1.amazonaws.com/media/4b870aead251441ea0949ddf8be93b1buTHkyM.png')}
+body{background-image: url('http://i.imgur.com/bBzQ3ZF.jpg');
+     padding-left: 20px;
+     padding-right: 20px;
+    }
 h1{color:red;}
 h2{color:red;}
 h3{color:blue;}
+#wrapper{width: 1000px;
+          float: left;
+         position:relative;
+         top: -500px;
+         left: 200px;}
+button{height: 50px;
+        width: 100px;}
