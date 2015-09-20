@@ -112,6 +112,7 @@ def get_city_info(parsed_weather_dictionary):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/index.html')
+        logging.info("Stay chill")
         self.response.write(template.render())
 
 #consumer key = xcBFVugoUDNSh-YdI69i7A
