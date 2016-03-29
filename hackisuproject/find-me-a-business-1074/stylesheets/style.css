@@ -1,0 +1,27 @@
+h1{color:red;}
+.jumbotron{
+            background-image: url('http://img00.deviantart.net/f4b6/i/2013/171/0/f/city_collage_wallpaper_by_byzeka-d69xa2j.jpg');
+            height: 400px;
+
+          }
+#jtcontent{
+            width: 600px ;
+            margin-left: auto ;
+            margin-right: auto ;
+
+          }
+#searchcontent{
+                width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+              }
+#randombutton{
+                width: 300px;
+                margin-left: auto;
+                margin-right: auto;
+                position: relative;
+                left: 30px;
+              }
+#title{color:white;}
+#subtitle{color:white}
+}

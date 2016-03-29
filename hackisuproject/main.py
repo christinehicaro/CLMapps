@@ -40,15 +40,15 @@ jinja_environment = jinja2.Environment(
 def get_city_list():
     city_list = []
     f = open(os.path.join(os.path.dirname(__file__), 'csv/cities.csv'))
-    csv_f = csv.reader(f)
-    for row in csv_f:
+    line = csv.reader(f)
+    for row in line:
       city_list.append(row[2])
     city_list = set(city_list)
     return city_list
 
 def get_weather_info(query):
     base_url = 'http://api.openweathermap.org/data/2.5/weather?&'
-    api_key_url = '&units=imperial&APPID=341e54aef9ae5224b6094459078293b8'
+    api_key_url = '&units=imperial&APPID=c7dc33c90abcb74a4916887da84eb17d'
     weather_data_source = urlfetch.fetch(base_url + query + api_key_url)
     weather_json_content = weather_data_source.content
     parsed_weather_dictionary = json.loads(weather_json_content)

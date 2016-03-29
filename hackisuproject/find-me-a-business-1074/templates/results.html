@@ -12,19 +12,20 @@
   </header>
 
   <body>
-  <h1>{{city_name}}, {{country}}</h1>
-  <div>
-      <p>Description: {{description}}</p>
-      <p>Temperature: {{temperature}}</p>
-      <p>High: {{max_temp}}</p>
-      <p>Low: {{min_temp}} </p>
-      <p>Humidity: {{humidity}}%</p>
-      <p>Wind Speed: {{wind_speed}}mph</p>
-      <br/>
-  </div>
+  <center>
+    <h1>{{city_name}}, {{country}}</h1>
+    <div>
+        <p>Description: {{description}}</p>
+        <p>Temperature: {{temperature}};</p>
+        <p>High: {{max_temp}}</p>
+        <p>Low: {{min_temp}}</p>
+        <p>Humidity: {{humidity}}%</p>
+        <p>Wind Speed: {{wind_speed}}mph</p>
+        <br/>
+    </div>
+  </center>
 
     <div>
-      <h1>Businesses</h1>
 
 
 
@@ -32,10 +33,9 @@
     <div id="red" class="tile">
 
       <center><h2>Businesses (Click on name to see more info)</h2></center>
-      <center><div class="content">
 
-      <h2>Businesses (Click on name to see more info)</h2>
 
+      <center>
       <div class="content">
 
         {% if has_yelp %}
@@ -46,14 +46,15 @@
           {% endfor %}
         {% else %}
           <h2 id="oops">There are no businesses for this location.</h2>
-          <img src="../img/cat1.gif" class="cat">
+          <img src="../images/school_computers_in_a_nutshell-76646.gif.gif">
       {% endif %}
-    </div></center>
+    </div>
+  </center>
     </div>
     <div id = "wrapper">
+
       <form action = "/" method = "get">
         <button id = "button1">Take me back home</button>
-
       </form>
 
     </div>

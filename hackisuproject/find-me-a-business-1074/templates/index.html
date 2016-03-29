@@ -1,0 +1,54 @@
+<!Doctype HTML>
+<html>
+
+  <header>
+    <title>
+      CLMapps
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </header>
+
+  <body>
+
+    <div class="jumbotron">
+      <div id = "jtcontent">
+        <center><h1 id = "title">Business Finder</h1></center>
+        <center><p>
+          <h3 id = "subtitle">Find high quality businesses anytime, anywhere!</h3>
+        </p></center>
+        <br>
+        <div id = "searchcontent">
+          <form action = "/results" method = "get">
+              <div class="col-lg-6">
+                <div class="input-group">
+                  <center><input type="text" class="form-control" name = "search" placeholder="Enter a location (i.e. Chicago, New York, Singapore)" style = "width:350px"></center>
+                  <br>
+                  <br>
+                  <center><button type="submit">Go!</button></center>
+                  <br>
+                  <br>
+                  <p><a id = "randombutton" class="btn btn-primary btn-lg" href="/random" role="button">Give me a random location</a></p>
+
+                </div><!-- /input-group -->
+              </div><!-- /.col-lg-6 -->
+          </div><!-- /.row -->
+            <br>
+            <br>
+          </form>
+        </div>
+      </div>
+      <h2>CLMapps</h2>
+      <center><div id = "references">
+        <h3>This app was made possible by:</h3>
+        <br>
+        <img src = 'http://www.citygridmedia.com/developer/wp-content/uploads/2012/03/Yelp_Logo.jpg' style = "height: 150px; width: 300px;">
+        <a href = "https://www.yelp.com/developers/documentation/v2/overview"> Yelp API</a>
+      </div></center>
+
+
+  </body>
+
+</html>
